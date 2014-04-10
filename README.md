@@ -55,7 +55,7 @@ Like this, in your main,
     	ThreadPoolWrapper wrapper;
     	wrapper.Init();
     	
-    	//Set Max/Min Thread Count
+    	//Set Min/Max Thread Count
     	wrapper.SetThreadCount(1, 3);
     
     	//Put first Callback into the Threadpool with param
