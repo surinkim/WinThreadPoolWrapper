@@ -1,4 +1,3 @@
-
 Introduction
 ====================
 
@@ -68,7 +67,6 @@ Author
 ====================
 web : http://attractiveapproach.blogspot.com  
 mail : nnhope@hotmail.com  
-github : https://github.com/surinkim  
 stackoverflow : http://stackoverflow.com/users/2231098/codedreamer
 
 
