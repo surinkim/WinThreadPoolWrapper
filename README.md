@@ -14,6 +14,7 @@ First, you should write your own work thread.
 For exsample, below code is work thread which prints odd numbers between min and max number.
 Let's say this function's name is `MyWorkCallback()`.
 
+```c++
     VOID CALLBACK MyWorkCallback(PTP_CALLBACK_INSTANCE instance, PVOID parameter, PTP_WORK work)
     {	
         if(parameter == nullptr) { return; }
@@ -34,11 +35,12 @@ Let's say this function's name is `MyWorkCallback()`.
 
     	return;
     }
-
+```
 
 And then, we simply use above function using by `ThreadPoolWrapper`.
 Like this, in your main,
 
+```c++
     int main(int argc, char* argv[])
     {
     	//Init glog
@@ -71,7 +73,7 @@ Like this, in your main,
     
     	return 0;
     }
-
+```
 
 
 References
