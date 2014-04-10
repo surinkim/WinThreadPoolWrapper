@@ -58,13 +58,12 @@ Like this, in your main,
     	//Set Min/Max Thread Count
     	wrapper.SetThreadCount(1, 3);
     
-    	//Put first Callback into the Threadpool with param
-    	ParamInfo info(1, 50);
-    	wrapper.SetCallback(MyWorkCallback, static_cast<PVOID>(&info));
-    
-    	//Put second Callback into the Threadpool with param
-    	ParamInfo info2(51, 100);
-    	wrapper.SetCallback(MyWorkCallback, static_cast<PVOID>(&info2));
+    	//put callback with pram into the Threadpool
+    	ParamInfo infos[] = {ParamInfo(1, 50), ParamInfo(51, 100)};
+    	for_each(std::begin(infos), std::end(infos), [&](ParamInfo& info)
+    	{
+    		wrapper.SetCallback(MyWorkCallback, static_cast<PVOID>(&info));
+    	});
     
     	//Wait for Callback finish
     	wrapper.WaitCallbackFinish();
