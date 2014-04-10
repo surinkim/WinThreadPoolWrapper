@@ -1,9 +1,6 @@
 #include "ThreadPoolWrapper.h"
 
-#include <limits>
 #include <iostream>
-
-#pragma comment(lib, "libglog.lib")
 
 using namespace std;
 
@@ -42,7 +39,7 @@ bool ThreadPoolWrapper::Init()
 	pool_ = CreateThreadpool(nullptr);
 	if(pool_ == nullptr)
 	{
-		LOG(FATAL) << "Function = " << __FUNCTION__ <<", GetLastError = " << GetLastError();
+		PRINT_ERROR();
 		return false;
 	}
 	
@@ -53,7 +50,7 @@ bool ThreadPoolWrapper::Init()
 	cleanup_group_ = CreateThreadpoolCleanupGroup();
 	if(cleanup_group_ == nullptr)
 	{
-		LOG(FATAL) << "Function = " << __FUNCTION__ <<", GetLastError = " << GetLastError();
+		PRINT_ERROR();
 		return false;
 	}
 
@@ -68,8 +65,7 @@ bool ThreadPoolWrapper::SetThreadCount(const DWORD thread_min_count, const DWORD
 {
 	if(thread_max_count < thread_min_count)
 	{
-		LOG(FATAL) << "Invalid Threadpool Count : " << "max count = " << thread_max_count
-			<< ", min count = " << thread_min_count;
+		PRINT_ERROR();
 		return false;
 	}
 
@@ -100,13 +96,13 @@ bool ThreadPoolWrapper::_SetCount(const CountType count_type, const DWORD count)
 	{
 		if(!SetThreadpoolThreadMinimum(pool_, count))
 		{
-			LOG(FATAL) << "Function = " << __FUNCTION__ <<", GetLastError = " << GetLastError();
+			PRINT_ERROR();
 			return false;
 		}
 	}
 	else
 	{
-		LOG(ERROR) << "Function = " << __FUNCTION__;
+		PRINT_ERROR();
 		return false;
 	}
 	return true;

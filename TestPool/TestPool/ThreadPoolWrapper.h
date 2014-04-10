@@ -1,8 +1,9 @@
 #pragma once
 
-#include <glog/logging.h>
+#include <assert.h>
 #include <windows.h>
 
+#include "PrintFunc.h"
 #include "WorkItem.h"
 
 using namespace std;
@@ -18,7 +19,7 @@ public:
 	void WaitCallbackFinish();															//wait for callback function to complete
 
 	template <typename T>
-	void SetCallback(T func, PVOID param);															//set callback
+	bool SetCallback(T func, PVOID param);															//set callback
 
 private:
 
@@ -39,18 +40,21 @@ private:
 
 
 template <typename T>
-void ThreadPoolWrapper::SetCallback(T func, PVOID param)
+bool ThreadPoolWrapper::SetCallback(T func, PVOID param)
 {
 	WorkItem<T>* work_item = new WorkItem<T>(func, param, &callback_env_);
+	assert(work_item != nullptr);
 	if(work_item == nullptr)
 	{
-		LOG(FATAL) << "Function = " << __FUNCTION__;
-		return;
+		PRINT_ERROR();
+		return false;
 	}
 
 	if(!work_item->StartWork())
 	{
-		LOG(FATAL) << "Function = " << __FUNCTION__;
-		return;
+		PRINT_ERROR();
+		return false;
 	}
+
+	return true;
 }

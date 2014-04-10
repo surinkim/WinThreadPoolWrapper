@@ -1,9 +1,6 @@
 #pragma once
 
-#include <glog/logging.h>
 #include <windows.h>
-
-using namespace std;
 
 template <typename T>
 class WorkItem
@@ -38,7 +35,7 @@ bool WorkItem<T>::StartWork()
 	work_ = CreateThreadpoolWork(callback, this, callback_env_); 
 	if(work_ == nullptr)
 	{
-		LOG(FATAL) << "Function = " << __FUNCTION__ <<", GetLastError = " << GetLastError();
+		PRINT_ERROR();
 		return false;
 	}
 
@@ -56,7 +53,7 @@ void CALLBACK WorkItem<T>::callback (PTP_CALLBACK_INSTANCE instance, PVOID param
 	WorkItem<T>* work_item = reinterpret_cast<WorkItem<T>*>(param);
 	if(work_item == nullptr)
 	{
-		LOG(FATAL) << "Function = " << __FUNCTION__;
+		PRINT_ERROR();
 		return;
 	}
 

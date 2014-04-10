@@ -42,11 +42,6 @@ VOID CALLBACK MyWorkCallback(PTP_CALLBACK_INSTANCE instance, PVOID parameter, PT
 
 int main(int argc, char* argv[])
 {
-	//Init glog
-	google::InitGoogleLogging("pool_test");
-
-	FLAGS_log_dir = ".\\";
-
 	//Init SRWLOCK object
 	InitializeSRWLock(&g_lock);
 
@@ -59,14 +54,14 @@ int main(int argc, char* argv[])
 
 	//put callback with pram into the Threadpool
 	ParamInfo infos[] = {ParamInfo(1, 50), ParamInfo(51, 100)};
-	for_each(std::begin(infos), std::end(infos), [&](ParamInfo& info)
+	for_each(std::begin(infos), std::end(infos), [&wrapper](ParamInfo& info)
 	{
 		wrapper.SetCallback(MyWorkCallback, static_cast<PVOID>(&info));
 	});
 
 	//Wait for Callback finish
 	wrapper.WaitCallbackFinish();
-
+	
 	getchar();
 
 	return 0;
