@@ -16,7 +16,7 @@ bool WorkItem<T>::StartWork()
 	work_ = CreateThreadpoolWork(callback, this, callback_env_); 
 	if(work_ == nullptr)
 	{
-		PRINT_ERROR();
+		LOG_FATAL();
 		return false;
 	}
 
@@ -34,7 +34,7 @@ void CALLBACK WorkItem<T>::callback (PTP_CALLBACK_INSTANCE instance, PVOID param
 	WorkItem<T>* work_item = reinterpret_cast<WorkItem<T>*>(param);
 	if(work_item == nullptr)
 	{
-		PRINT_ERROR();
+		LOG_FATAL();
 		return;
 	}
 

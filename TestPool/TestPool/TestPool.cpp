@@ -1,6 +1,5 @@
 // TestPool.cpp : Defines the entry point for the console application.
 //
-
 #include <iostream>
 #include <algorithm>
 #include "ThreadPoolWrapper.h"
@@ -51,8 +50,6 @@ int main(int argc, char* argv[])
 	
 	//Set Min/Max Thread Count
 	wrapper.SetThreadCount(1, 3);
-
-	
 
 	//put callback with pram into the Threadpool
 	ParamInfo infos[] = {ParamInfo(1, 50), ParamInfo(51, 100)};

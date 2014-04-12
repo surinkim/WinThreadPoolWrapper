@@ -44,16 +44,15 @@ template <typename T>
 bool ThreadPoolWrapper::SetCallback(T func, PVOID param)
 {
 	WorkItem<T>* work_item = new WorkItem<T>(func, param, &callback_env_);
-	assert(work_item != nullptr);
-	if(work_item == nullptr)
+	if(work_item != nullptr)
 	{
-		PRINT_ERROR();
+		LOG_FATAL();
 		return false;
 	}
 
 	if(!work_item->StartWork())
 	{
-		PRINT_ERROR();
+		LOG_FATAL();
 		return false;
 	}
 

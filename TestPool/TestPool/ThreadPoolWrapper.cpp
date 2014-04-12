@@ -39,7 +39,7 @@ bool ThreadPoolWrapper::Init()
 	pool_ = CreateThreadpool(nullptr);
 	if(pool_ == nullptr)
 	{
-		PRINT_ERROR();
+		LOG_FATAL();
 		return false;
 	}
 	
@@ -50,7 +50,7 @@ bool ThreadPoolWrapper::Init()
 	cleanup_group_ = CreateThreadpoolCleanupGroup();
 	if(cleanup_group_ == nullptr)
 	{
-		PRINT_ERROR();
+		LOG_FATAL();
 		return false;
 	}
 
@@ -65,7 +65,7 @@ bool ThreadPoolWrapper::SetThreadCount(const DWORD thread_min_count, const DWORD
 {
 	if(thread_max_count < thread_min_count)
 	{
-		PRINT_ERROR();
+		LOG_FATAL();
 		return false;
 	}
 
@@ -77,27 +77,6 @@ bool ThreadPoolWrapper::SetThreadCount(const DWORD thread_min_count, const DWORD
 
 	return true;
 }
-
-
-//template <typename T>
-//bool ThreadPoolWrapper::SetCallback(T func, PVOID param)
-//{
-//	WorkItem<T>* work_item = new WorkItem<T>(func, param, &callback_env_);
-//	assert(work_item != nullptr);
-//	if(work_item == nullptr)
-//	{
-//		PRINT_ERROR();
-//		return false;
-//	}
-//
-//	if(!work_item->StartWork())
-//	{
-//		PRINT_ERROR();
-//		return false;
-//	}
-//
-//	return true;
-//}
 
 
 void ThreadPoolWrapper::WaitCallbackFinish()
@@ -117,13 +96,13 @@ bool ThreadPoolWrapper::_SetCount(const CountType count_type, const DWORD count)
 	{
 		if(!SetThreadpoolThreadMinimum(pool_, count))
 		{
-			PRINT_ERROR();
+			LOG_FATAL();
 			return false;
 		}
 	}
 	else
 	{
-		PRINT_ERROR();
+		LOG_FATAL();
 		return false;
 	}
 	return true;
