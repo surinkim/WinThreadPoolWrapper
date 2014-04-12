@@ -1,17 +1,17 @@
 Introduction
 ====================
 
-WinThreadPoolWrapper is a simple wrapper for windows thread pool apis, such as `CreateThreadpool()`.  
+WinThreadPoolWrapper is a simple wrapper class for windows thread pool apis, such as `CreateThreadpool()`.  
 Using by this, we don't need to know detaily those windows thread pool apis.
 
 
 How to use
 ====================
 
-This project is written in VS2010 and google log.
+This project is written in VS2010.
 
 First, you should write your own work thread. 
-For exsample, below code is work thread which prints odd numbers between min and max number.
+For example, below code is work thread which prints odd numbers between min and max number.
 Let's say this function's name is `MyWorkCallback()`.
 
 ```c++
