@@ -5,6 +5,7 @@
 
 #include "PrintFunc.h"
 #include "WorkItem.h"
+#include "WorkItem.cpp"
 
 using namespace std;
 

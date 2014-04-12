@@ -79,6 +79,27 @@ bool ThreadPoolWrapper::SetThreadCount(const DWORD thread_min_count, const DWORD
 }
 
 
+//template <typename T>
+//bool ThreadPoolWrapper::SetCallback(T func, PVOID param)
+//{
+//	WorkItem<T>* work_item = new WorkItem<T>(func, param, &callback_env_);
+//	assert(work_item != nullptr);
+//	if(work_item == nullptr)
+//	{
+//		PRINT_ERROR();
+//		return false;
+//	}
+//
+//	if(!work_item->StartWork())
+//	{
+//		PRINT_ERROR();
+//		return false;
+//	}
+//
+//	return true;
+//}
+
+
 void ThreadPoolWrapper::WaitCallbackFinish()
 {
 	//Since the second parameter is FALSE, when all work item finish, this will return.
