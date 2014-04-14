@@ -44,7 +44,7 @@ template <typename T>
 bool ThreadPoolWrapper::SetCallback(T func, PVOID param)
 {
 	WorkItem<T>* work_item = new WorkItem<T>(func, param, &callback_env_);
-	if(work_item != nullptr)
+	if(work_item == nullptr)
 	{
 		LOG_FATAL();
 		return false;
