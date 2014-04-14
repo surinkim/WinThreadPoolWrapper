@@ -43,11 +43,6 @@ Like this, in your main,
 ```c++
     int main(int argc, char* argv[])
     {
-    	//Init glog
-    	google::InitGoogleLogging("pool_test");
-    
-    	FLAGS_log_dir = ".\\";
-    
     	//Init SRWLOCK object
     	InitializeSRWLock(&g_lock);
     
