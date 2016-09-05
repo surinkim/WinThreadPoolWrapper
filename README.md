@@ -81,7 +81,6 @@ References
 Author
 ====================
 
- - web : http://attractiveapproach.blogspot.com  
  - mail : nnhope@hotmail.com  
  - stackoverflow : http://stackoverflow.com/users/2231098/codedreamer
 
